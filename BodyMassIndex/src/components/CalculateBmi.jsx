@@ -6,7 +6,7 @@ import {
   Input,
   Text
 } from '@chakra-ui/react'
-import {useEffect, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 
 const CalculateBmi = () => {
@@ -20,12 +20,12 @@ const CalculateBmi = () => {
     setWeight(localStorage.getItem('weight') || 0)
   }, [])
 
-  const calculate = (e) => {
+  const calculate = useCallback((e) => {
     e?.preventDefault()
     let bmi = weight / Math.pow(height / 100, 2)
     bmi = Number.parseFloat(bmi).toFixed(2)
     setBmi(bmi)
-  }
+  },[weight,height])
   useEffect(() => {
     calculate()
     localStorage.setItem('height', height)
@@ -57,7 +57,7 @@ const CalculateBmi = () => {
           <Text mt={5} mb={10} textAlign={'center'} width={'sm'}
                 borderBottom={'1px solid gray'} fontWeight={'bold'}
                 fontSize={'4xl'}>BMI</Text>
-          {bmi > 0 && bmi != Infinity && (
+          {bmi > 0 && (
               <>
                 <Text fontWeight={'bold'} fontSize={'2xl'}>
                   {bmi}
