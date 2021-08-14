@@ -1,7 +1,7 @@
 # E-commerce App
 
 
-Demo : https://bmi-calculate-app.netlify.app/
+Demo : https://patika-ecommerce-app.netlify.app/
 
 
 ### Screens
